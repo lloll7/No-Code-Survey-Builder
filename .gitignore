@@ -1,0 +1,93 @@
+# ----------------------
+# 操作系统生成文件
+# ----------------------
+.DS_Store          # macOS 系统文件
+Thumbs.db          # Windows 缩略图缓存
+Desktop.ini        # Windows 文件夹自定义设置
+
+# ----------------------
+# IDE 与编辑器配置
+# ----------------------
+.vscode/           # VS Code 配置
+.idea/             # JetBrains IDE 配置
+*.suo              # Visual Studio 用户选项
+*.user
+*.sublime-workspace
+
+# ----------------------
+# 编译生成文件
+# ----------------------
+# 通用
+*.exe
+*.dll
+*.obj
+*.lib
+*.class
+
+# C/C++
+*.o
+*.out
+*.so
+
+# Java
+target/
+build/
+*.jar
+*.war
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# ----------------------
+# 依赖目录
+# ----------------------
+node_modules/      # Node.js 依赖
+bower_components/
+jspm_packages/
+vendor/            # PHP 依赖（如 Composer）
+venv/             # Python 虚拟环境
+.env/             # 虚拟环境（Poetry/Pipenv）
+Pods/             # iOS CocoaPods
+
+# ----------------------
+# 日志与临时文件
+# ----------------------
+*.log
+*.tmp
+*.swp
+*.swo
+*.sass-cache
+
+# ----------------------
+# 测试相关
+# ----------------------
+coverage/          # 测试覆盖率报告
+test-results/      # 自动化测试结果
+
+# ----------------------
+# 项目特定配置
+# ----------------------
+.env               # 环境变量文件（保留 .env.example）
+.local            # 本地开发配置
+.secret           # 敏感信息文件
+
+# ----------------------
+# 构建工具
+# ----------------------
+dist/             # 打包后的输出目录
+build/            # 编译后的代码
+out/              # 构建输出（如 TypeScript）
+.cache/           # 构建缓存目录
+.parcel-cache/
+
+# ----------------------
+# 其他
+# ----------------------
+*.bak             # 备份文件
+*.seed            # 数据库种子数据
+*.sqlite          # 本地数据库文件
+node_modules
+node_modules
+.vscode
