@@ -11,6 +11,7 @@
 
 <script setup lang="ts">
 import type { VueComType } from '@/types/index.ts';
+// inject 依赖注入：类似注册事件、触发事件，用于跨组件进行数据传递
 import { ref, inject } from 'vue';
 const props = defineProps<{
   status: string;
