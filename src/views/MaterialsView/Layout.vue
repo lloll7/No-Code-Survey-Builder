@@ -28,6 +28,7 @@ import EditPannel from '@/components/SurveyComs/EditItems/EditPannel.vue';
 // provide 依赖注入：类似注册事件、触发事件，用于跨组件进行数据传递
 import { computed, provide } from 'vue';
 import { useMaterialStore } from '@/stores/useMaterial';
+import { ElMessage } from 'element-plus';
 // 拿到数据仓库
 const store = useMaterialStore();
 // 拿到当前选中的组件的数据状态
@@ -42,6 +43,33 @@ const updateStatus = (configKey: string, payload?: number | string | boolean) =>
         console.error("Invalid payload type for 'type', Expected string");
       }
       store.setTextStatus(currentCom.value.status[configKey], <string>payload);
+    }
+    case 'options': {
+      if (typeof payload === 'number') {
+        // 说明是删除选项
+        const res = store.removeOption(currentCom.value.status[configKey], payload);
+        if (res) {
+          ElMessage.success('删除成功');
+        } else {
+          ElMessage.error('至少要保留两个选项');
+        }
+      } else {
+        // 否则为新增选项
+        store.addOption(currentCom.value.status[configKey]);
+      }
+    }
+    case 'position': {
+      if (typeof payload !== 'number') {
+        console.error("Invalid payload type for 'position', Expected number");
+      }
+      store.setPosition(currentCom.value.status[configKey], payload as number);
+    }
+    case 'titleSize':
+    case 'descSize': {
+      if (typeof payload !== 'number') {
+        console.error("Invalid payload type for 'titleSize', Expected number");
+      }
+      store.setSize(currentCom.value.status[configKey], payload as number);
     }
   }
 };

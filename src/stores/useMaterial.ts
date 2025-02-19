@@ -2,7 +2,7 @@
 import { defineStore } from 'pinia';
 
 import { defaultStatusMap } from '@/configs/defaultStatus/defaultStatusMap.ts';
-import { setTextStatus } from './actions.ts';
+import { setTextStatus, addOption, removeOption, setPosition, setSize } from './actions.ts';
 export const useMaterialStore = defineStore('materialStore', {
   state: () => ({
     currentMaterialCom: 'single-select',
@@ -14,5 +14,9 @@ export const useMaterialStore = defineStore('materialStore', {
   }),
   actions: {
     setTextStatus,
+    addOption,
+    removeOption,
+    setPosition,
+    setSize,
   },
 });

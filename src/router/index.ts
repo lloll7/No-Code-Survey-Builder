@@ -18,6 +18,7 @@ const router = createRouter({
           path: '/select-group',
           name: 'select-group',
           component: () => import('@/views/MaterialsView/SelectGroupView.vue'),
+          redirect: '/single-select', // 重定向到 single-select 页面
           children: [
             {
               path: '/single-select',

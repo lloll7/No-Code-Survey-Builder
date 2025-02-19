@@ -1,5 +1,35 @@
-import type { TextProps } from '@/types/index.ts';
+import type { TextProps, OptionsProps } from '@/types/index.ts';
+import { isStringArray } from '@/types/index.ts';
 export function setTextStatus(textProps: TextProps, text: string) {
-  console.log(textProps, text, 'setTextStatus');
   textProps.status = text;
+}
+
+// 增加选项
+export function addOption(optionsProps: OptionsProps) {
+  // 因为OptionsProps中的status可能是多个类型的数组，OptionsProps用于确定该数组为字符串数组
+  if (isStringArray(optionsProps.status)) {
+    let num = Number(
+      optionsProps.status[optionsProps.status.length - 1].split('')[
+        optionsProps.status[optionsProps.status.length - 1].length - 1
+      ],
+    );
+    optionsProps.status.push(`新增选项${!isNaN(num) ? num + 1 : 1}`);
+  }
+}
+
+export function removeOption(optionsProps: OptionsProps, index: number) {
+  if (optionsProps.status.length === 2) {
+    return false;
+  } else {
+    optionsProps.status.splice(index, 1);
+    return true;
+  }
+}
+
+export function setPosition(optionsProps: OptionsProps, pos: number) {
+  optionsProps.currentStatus = pos;
+}
+
+export function setSize(optionsProps: OptionsProps, index: number) {
+  optionsProps.currentStatus = index;
 }
