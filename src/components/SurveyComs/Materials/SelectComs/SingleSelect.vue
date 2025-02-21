@@ -54,8 +54,8 @@ const computedState = computed(() => ({
   descWeight: getCurrentStatus(props.status.descWeight),
   titleItalic: getCurrentStatus(props.status.titleItalic),
   descItalic: getCurrentStatus(props.status.descItalic),
-  titleColor: getStringStatus(props.status.titleColor),
-  descColor: getStringStatus(props.status.descColor),
+  titleColor: getTextStatus(props.status.titleColor),
+  descColor: getTextStatus(props.status.descColor),
 }));
 </script>
 

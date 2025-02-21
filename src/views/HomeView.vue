@@ -1,6 +1,6 @@
 <template>
   <div class="pt-20 pb-20 pl-20 pr-20">
-    <h1 class="font-weight-100 text-center">渡一问卷系统</h1>
+    <h1 class="font-weight-100 text-center">No-Code-Survey-Builder</h1>
     <!-- 按钮组 -->
     <div class="mb-15">
       <el-button type="primary" :icon="Plus" @click="goToEditor">创建问卷</el-button>
@@ -33,10 +33,12 @@ const router = useRouter();
 const tableData = ref([]);
 
 const goToEditor = () => {
+  localStorage.setItem('activeView', 'editor');
   router.push('/editor');
 };
 
 const goToComMarket = () => {
+  localStorage.setItem('activeView', 'materials');
   router.push('/materials');
 };
 </script>

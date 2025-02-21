@@ -43,6 +43,7 @@ const updateStatus = (configKey: string, payload?: number | string | boolean) =>
         console.error("Invalid payload type for 'type', Expected string");
       }
       store.setTextStatus(currentCom.value.status[configKey], <string>payload);
+      break;
     }
     case 'options': {
       if (typeof payload === 'number') {
@@ -57,12 +58,14 @@ const updateStatus = (configKey: string, payload?: number | string | boolean) =>
         // 否则为新增选项
         store.addOption(currentCom.value.status[configKey]);
       }
+      break;
     }
     case 'position': {
       if (typeof payload !== 'number') {
         console.error("Invalid payload type for 'position', Expected number");
       }
       store.setPosition(currentCom.value.status[configKey], payload as number);
+      break;
     }
     case 'titleSize':
     case 'descSize': {
@@ -70,6 +73,31 @@ const updateStatus = (configKey: string, payload?: number | string | boolean) =>
         console.error("Invalid payload type for 'titleSize', Expected number");
       }
       store.setSize(currentCom.value.status[configKey], payload as number);
+      break;
+    }
+    case 'titleWeight':
+    case 'descWeight': {
+      if (typeof payload !== 'number') {
+        console.error("Invalid payload type for 'titleWeight', Expected number");
+      }
+      store.setWeight(currentCom.value.status[configKey], payload as number);
+      break;
+    }
+    case 'titleItalic':
+    case 'descItalic': {
+      if (typeof payload !== 'number') {
+        console.error("Invalid payload type for 'titleItalic', Expected boolean");
+      }
+      store.setItalic(currentCom.value.status[configKey], payload as number);
+      break;
+    }
+    case 'titleColor':
+    case 'descColor': {
+      if (typeof payload !== 'string') {
+        console.error("Invalid payload type for 'titleColor', Expected string");
+      }
+      store.setColor(currentCom.value.status[configKey], payload as string);
+      break;
     }
   }
 };

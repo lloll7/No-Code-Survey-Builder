@@ -23,6 +23,7 @@ const avatar = ref(
 );
 
 const goHome = () => {
+  localStorage.setItem('activeView', 'home');
   router.push('/'); // 跳转到首页
 };
 </script>

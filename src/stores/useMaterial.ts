@@ -2,21 +2,36 @@
 import { defineStore } from 'pinia';
 
 import { defaultStatusMap } from '@/configs/defaultStatus/defaultStatusMap.ts';
-import { setTextStatus, addOption, removeOption, setPosition, setSize } from './actions.ts';
+import {
+  setTextStatus,
+  addOption,
+  removeOption,
+  setPosition,
+  setSize,
+  setWeight,
+  setItalic,
+  setColor,
+} from './actions.ts';
 export const useMaterialStore = defineStore('materialStore', {
   state: () => ({
     currentMaterialCom: 'single-select',
     // 记录所有的业务组件
     coms: {
       'single-select': defaultStatusMap['single-select'](),
-      'multiple-select': {},
+      'single-pic-select': defaultStatusMap['single-pic-select'](),
     },
   }),
   actions: {
+    setCurrentMaterialCom(comName: string) {
+      this.currentMaterialCom = comName;
+    },
     setTextStatus,
     addOption,
     removeOption,
     setPosition,
     setSize,
+    setWeight,
+    setItalic,
+    setColor,
   },
 });
