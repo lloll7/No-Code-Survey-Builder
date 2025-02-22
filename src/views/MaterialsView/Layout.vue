@@ -1,3 +1,11 @@
+<!--
+ * @Author: lloll7 Linzylloll@outlook.com
+ * @Date: 2025-02-14 17:34:13
+ * @LastEditors: lloll7 Linzylloll@outlook.com
+ * @LastEditTime: 2025-02-22 16:16:57
+ * @FilePath: \wenjuan\src\views\MaterialsView\Layout.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
   <div class="layout-container flex">
     <!-- 选择具体的业务组件 -->
@@ -29,6 +37,8 @@ import EditPannel from '@/components/SurveyComs/EditItems/EditPannel.vue';
 import { computed, provide } from 'vue';
 import { useMaterialStore } from '@/stores/useMaterial';
 import { ElMessage } from 'element-plus';
+import type { PicLink } from '@/types';
+import { isPicLink } from '@/types';
 // 拿到数据仓库
 const store = useMaterialStore();
 // 拿到当前选中的组件的数据状态
@@ -54,6 +64,9 @@ const updateStatus = (configKey: string, payload?: number | string | boolean) =>
         } else {
           ElMessage.error('至少要保留两个选项');
         }
+      } else if (typeof payload === 'object' && isPicLink(payload)) {
+        // 说明是在设置图片的链接
+        store.setPicLinkByIndex(currentCom.value.status[configKey], payload);
       } else {
         // 否则为新增选项
         store.addOption(currentCom.value.status[configKey]);
@@ -101,7 +114,12 @@ const updateStatus = (configKey: string, payload?: number | string | boolean) =>
     }
   }
 };
+
+const getLink = (link: PicLink) => {
+  updateStatus('options', link);
+};
 provide('updateStatus', updateStatus);
+provide('getLink', getLink);
 </script>
 
 <style scoped lang="scss">

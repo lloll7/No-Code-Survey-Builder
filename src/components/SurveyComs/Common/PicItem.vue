@@ -1,3 +1,11 @@
+<!--
+ * @Author: lloll7 Linzylloll@outlook.com
+ * @Date: 2025-02-21 16:21:11
+ * @LastEditors: lloll7 Linzylloll@outlook.com
+ * @LastEditTime: 2025-02-22 15:59:23
+ * @FilePath: \wenjuan\src\components\SurveyComs\Common\PicItem.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
   <div @click.stop>
     <div class="container mb-10">
@@ -30,12 +38,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
 import { Upload } from '@element-plus/icons-vue';
 import { ElMessage } from 'element-plus';
 import type { UploadProps } from 'element-plus';
 
-defineProps({
+const props = defineProps({
   picTitle: {
     type: String,
     default: '',
@@ -54,10 +62,20 @@ defineProps({
   },
 });
 
+const getLink = inject('getLink');
+
 const imageUrl = ref('');
 
-const handleAvatarSuccess = () => {
+const handleAvatarSuccess: UploadProps['onSuccess'] = async (response) => {
   // 图片上传成功的操作
+  //   imageUrl.value = URL.createObjectURL(uploadFile.raw!);
+  // console.log(response, '2222');
+  if (getLink) {
+    getLink({
+      index: props.index,
+      link: response.imageUrl,
+    });
+  }
 };
 const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
   if (rawFile.size / 1024 / 1024 > 2) {

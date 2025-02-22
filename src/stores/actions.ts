@@ -1,5 +1,6 @@
-import type { TextProps, OptionsProps } from '@/types/index.ts';
+import type { TextProps, OptionsProps, PicLink } from '@/types/index.ts';
 import { isStringArray } from '@/types/index.ts';
+import { isPicTitleDescStatusArray } from '@/types/editProps.ts';
 export function setTextStatus(textProps: TextProps, text: string) {
   textProps.status = text;
 }
@@ -8,7 +9,7 @@ export function setTextStatus(textProps: TextProps, text: string) {
 export function addOption(optionsProps: OptionsProps) {
   // 因为OptionsProps中的status可能是多个类型的数组，OptionsProps用于确定该数组为字符串数组
   if (isStringArray(optionsProps.status)) {
-    let num = Number(
+    const num = Number(
       optionsProps.status[optionsProps.status.length - 1].split('')[
         optionsProps.status[optionsProps.status.length - 1].length - 1
       ],
@@ -44,4 +45,10 @@ export function setItalic(optionsProps: OptionsProps, index: number) {
 
 export function setColor(textProps: TextProps, color: string) {
   textProps.status = color;
+}
+
+export function setPicLinkByIndex(optionsProps: OptionsProps, payload: PicLink) {
+  if (isPicTitleDescStatusArray(optionsProps.status)) {
+    optionsProps.status[payload.index].value = payload.link;
+  }
 }
